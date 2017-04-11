@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    hpricot (0.8.6)
+    httpclient (2.8.3)
+    scraperwiki (3.0.2)
+      httpclient
+      sqlite_magic
+    sqlite3 (1.3.13)
+    sqlite_magic (0.0.6)
+      sqlite3
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  hpricot
+  scraperwiki
+
+BUNDLED WITH
+   1.14.3
