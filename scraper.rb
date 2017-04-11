@@ -1,9 +1,5 @@
-require 'scraperwiki'
-require 'rubygems'
-require 'date'
-require 'net/https'
-require 'json'
-require 'open-uri'
+require "scraperwiki"
+require "date"
 require "mechanize"
 
 agent = Mechanize.new
