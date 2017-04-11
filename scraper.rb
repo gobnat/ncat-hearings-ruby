@@ -26,7 +26,7 @@ def venue_list
   page = agent.get(url)
   table = page.at("table.ms-rteTable-4")
   venue_links = table.search(:td).collect { |td| td.search(:a) }.flatten
-  venue_list = venue_links.collect { |a| {url: a.attr(:href), location: a.attr(:title), postcode: a.attr(:href)[/(\d{4}$)/]} }
+  venue_links.collect { |a| {url: a.attr(:href), location: a.attr(:title), postcode: a.attr(:href)[/(\d{4}$)/]} }
 end
 
 venue_list.each do |v|
