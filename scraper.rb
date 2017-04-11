@@ -8,9 +8,6 @@ require "mechanize"
 
 @agent = Mechanize.new
 
-host = "esd.cttt.nsw.gov.au"
-url = "/Hearing/HearingList.aspx?LocationCode="
-
 # Get the list of venues from the venue scraper
 def venue_list
   url = "http://www.ncat.nsw.gov.au/Pages/going_to_the_tribunal/hearing_lists.aspx"
