@@ -44,7 +44,7 @@ venue_list.each do |v|
   # This way of working out the dates probably won't last
   # need to work out when the data is posted, etc.
   (Date.today..Date.today + 30).each do |d|
-    puts "Processing #{d} for #{v['postcode']}"
+    puts "Processing #{d} for #{v[:postcode]}"
     id = '//*[@id="dg' + d.strftime("%-d%-m%Y") + '"]'
     (page/id).each do |r|
       # First get room and time. The format is different for the first
@@ -65,8 +65,8 @@ venue_list.each do |v|
           'date'                => d.to_s,
           'time'                => time_and_place.split(" at ", 2)[0],
           'location'            => time_and_place.split(" at ", 2)[1].strip,
-          'venue'               => v["location"],
-          'venue_postcode'      => v["postcode"]
+          'venue'               => v[:location],
+          'venue_postcode'      => v[:postcode]
         }
     
         ScraperWiki.save(['unique_id'], cttt_case)
