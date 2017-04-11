@@ -30,7 +30,7 @@ def venue_list
 end
 
 venue_list.each do |v|
-  venue_url = url + v["postcode"]
+  venue_url = v[:url]
 
   begin
     response = http.get(venue_url)
