@@ -17,7 +17,17 @@ http.use_ssl = true
 http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
 # Get the list of venues from the venue scraper
-venue_list = JSON.parse(open("http://api.scraperwiki.com/api/1.0/datastore/sqlite?format=jsondict&name=cttt-hearing-venues&query=select%20*%20from%20%60swdata%60").read)
+def venue_list
+  require "mechanize"
+
+  agent = Mechanize.new
+
+  url = "http://www.ncat.nsw.gov.au/Pages/going_to_the_tribunal/hearing_lists.aspx"
+  page = agent.get(url)
+  table = page.at("table.ms-rteTable-4")
+  venue_links = table.search(:td).collect { |td| td.search(:a) }.flatten
+  venue_list = venue_links.collect { |a| {url: a.attr(:href), location: a.attr(:title), postcode: a.attr(:href)[/(\d{4}$)/]} }
+end
 
 venue_list.each do |v|
   venue_url = url + v["postcode"]
