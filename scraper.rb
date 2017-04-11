@@ -36,7 +36,7 @@ venue_list.each do |v|
       else
         time_and_place = r.previous.previous.search('span').last.inner_text
       end
-    
+
       # Now the cases
       r.search('tr.clsGridItem').each do |c|
         cttt_case = {
@@ -50,7 +50,7 @@ venue_list.each do |v|
           'venue'               => v[:location],
           'venue_postcode'      => v[:postcode]
         }
-    
+
         ScraperWiki.save(['unique_id'], cttt_case)
       end
     end
