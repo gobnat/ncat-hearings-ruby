@@ -1,3 +1,4 @@
+require 'scraperwiki'
 require 'rubygems'
 require 'hpricot'
 require 'date'
