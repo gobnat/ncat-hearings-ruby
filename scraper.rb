@@ -1,39 +1,28 @@
 require 'scraperwiki'
 require 'rubygems'
-require 'hpricot'
 require 'date'
 require 'net/https'
 require 'json'
 require 'open-uri'
+require "mechanize"
+
+@agent = Mechanize.new
 
 host = "esd.cttt.nsw.gov.au"
 url = "/Hearing/HearingList.aspx?LocationCode="
 
 # Get the list of venues from the venue scraper
 def venue_list
-  require "mechanize"
-
-  agent = Mechanize.new
-
   url = "http://www.ncat.nsw.gov.au/Pages/going_to_the_tribunal/hearing_lists.aspx"
-  page = agent.get(url)
+  page = @agent.get(url)
   table = page.at("table.ms-rteTable-4")
   venue_links = table.search(:td).collect { |td| td.search(:a) }.flatten
   venue_links.collect { |a| {url: a.attr(:href), location: a.attr(:title), postcode: a.attr(:href)[/(\d{4}$)/]} }
 end
 
 venue_list.each do |v|
-  venue_url = v[:url]
+  page = @agent.get(v[:url])
 
-  begin
-    response = http.get(venue_url)
-  rescue Timeout::Error
-    puts "Timed out on #{venue_url}. Skipping."
-    next
-  end
-
-  page = Hpricot(response.body)
-  
   # This way of working out the dates probably won't last
   # need to work out when the data is posted, etc.
   (Date.today..Date.today + 30).each do |d|
