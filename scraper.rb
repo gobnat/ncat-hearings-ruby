@@ -36,7 +36,7 @@ venue_list.each do |v|
           'party_a'             => c.search('td')[1].inner_text,
           'party_b'             => c.search('td')[2].inner_text,
           'date'                => d.to_s,
-          'time'                => time_and_place.split(" at ", 2)[0],
+          'time'                => time_and_place.split(" at ", 2)[0][/(^.*(A|P)M)/],
           'location'            => time_and_place.split(" at ", 2)[1].strip,
           'venue'               => v[:location],
           'venue_postcode'      => v[:postcode]
