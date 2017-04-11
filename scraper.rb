@@ -6,17 +6,17 @@ require 'json'
 require 'open-uri'
 require "mechanize"
 
-@agent = Mechanize.new
+agent = Mechanize.new
 
 # Get the list of venues from the venue scraper
 url = "http://www.ncat.nsw.gov.au/Pages/going_to_the_tribunal/hearing_lists.aspx"
-page = @agent.get(url)
+page = agent.get(url)
 table = page.at("table.ms-rteTable-4")
 venue_links = table.search(:td).collect { |td| td.search(:a) }.flatten
 venue_list = venue_links.collect { |a| {url: a.attr(:href), location: a.attr(:title), postcode: a.attr(:href)[/(\d{4}$)/]} }
 
 venue_list.each do |v|
-  page = @agent.get(v[:url])
+  page = agent.get(v[:url])
 
   # This way of working out the dates probably won't last
   # need to work out when the data is posted, etc.
