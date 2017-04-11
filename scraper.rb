@@ -6,15 +6,8 @@ require 'net/https'
 require 'json'
 require 'open-uri'
 
-Encoding.default_external = Encoding::UTF_8
-
 host = "esd.cttt.nsw.gov.au"
 url = "/Hearing/HearingList.aspx?LocationCode="
-
-# The certificate was failing so we need to do this jiggery pokery
-http = Net::HTTP.new(host, 443)
-http.use_ssl = true
-http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
 # Get the list of venues from the venue scraper
 def venue_list
