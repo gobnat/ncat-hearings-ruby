@@ -7,7 +7,12 @@ agent = Mechanize.new
 # Get the list of venues from the venue scraper
 url = "http://www.ncat.nsw.gov.au/Pages/going_to_the_tribunal/hearing_lists.aspx"
 page = agent.get(url)
-table = page.at("table.ms-rteTable-4")
+
+# Not a great fix. Will probably break pretty fast but ok for now
+# Site has removed all tags from tables. Currently no other tables on page have data so just grab everything.
+# Need a more sensible way to grab the correct table longterm.
+#table = page.at("table.ms-rteTable-4")
+table = page.search("table")
 venue_links = table.search(:td).collect { |td| td.search(:a) }.flatten
 venue_list = venue_links.collect { |a| {url: a.attr(:href), location: a.attr(:title), postcode: a.attr(:href)[/(\d{4}$)/]} }
 

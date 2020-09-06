@@ -1,4 +1,4 @@
-## Temporary scraper for Tenants Union of NSW.
+Temporary scraper for Tenants Union of NSW.
 
 Quick fix of https://github.com/henare/ncat-hearings while we re-write it in php.
 
