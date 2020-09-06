@@ -1,3 +1,7 @@
+## Temporary scraper for Tenants Union of NSW.
+
+Quick fix of https://github.com/henare/ncat-hearings while we re-write it in php.
+
 A list of hearings before the "Consumer, Trader and Tenancy Tribunal of NSW":http://www.cttt.nsw.gov.au/.
 
-The idea eventually being that you can find out real estate agents that appear most often before the Tribunal and therefore ones that may be difficult to deal with or are overly litigious.
+The idea eventually being that you can find out real estate agents that appear most often before the Tribunal and therefore ones that may be difficult to deal with or are overly litigious
